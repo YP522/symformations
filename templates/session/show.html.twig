@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+    <h1>Session</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ session.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ session.dateDebut }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ session.dateFin }}</td>
+            </tr>
+            <tr>
+                <th>Nom_session</th>
+                <td>{{ session.nomSession }}</td>
+            </tr>
+            <tr>
+                <th>Formateur</th>
+                <td>{{ session.formateur }}</td>
+            </tr>
+            <tr>
+                <th>Promotion</th>
+                <td>{{ session.promotion }}</td>
+            </tr>
+            <tr>
+                <th>Salle</th>
+                <td>{{ session.salle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_session_index') }}">back to list</a>
+
+    <a href="{{ path('app_session_edit', {'id': session.id}) }}">edit</a>
+
+    {{ include('session/_delete_form.html.twig') }}
+{% endblock %}
