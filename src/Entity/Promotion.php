@@ -16,11 +16,16 @@ class Promotion
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'promotions')]
     private $formation;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $referent;
+    #[ORM\OneToOne(targetEntity: Formateur::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $formateur;
+
+    #[ORM\ManyToOne(targetEntity: Candidat::class, inversedBy: 'promotion')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $candidat;
 
     public function getId(): ?int
     {
@@ -39,26 +44,38 @@ class Promotion
         return $this;
     }
 
-    public function getFormation(): ?string
+    public function getFormation(): ?Formation
     {
         return $this->formation;
     }
 
-    public function setFormation(string $formation): self
+    public function setFormation(?Formation $formation): self
     {
         $this->formation = $formation;
 
         return $this;
     }
 
-    public function getReferent(): ?string
+    public function getFormateur(): ?Formateur
     {
-        return $this->referent;
+        return $this->formateur;
     }
 
-    public function setReferent(string $referent): self
+    public function setFormateur(Formateur $formateur): self
     {
-        $this->referent = $referent;
+        $this->formateur = $formateur;
+
+        return $this;
+    }
+
+    public function getCandidat(): ?Candidat
+    {
+        return $this->candidat;
+    }
+
+    public function setCandidat(?Candidat $candidat): self
+    {
+        $this->candidat = $candidat;
 
         return $this;
     }

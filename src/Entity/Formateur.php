@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FormateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FormateurRepository::class)]
@@ -13,20 +15,25 @@ class Formateur
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $prenom;
 
     #[ORM\Column(type: 'string', length: 10)]
-    private $tel;
+    private $numero_tel;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $promotion;
+    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'formateur')]
+    private $sessions;
+
+    public function __construct()
+    {
+        $this->sessions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -57,14 +64,14 @@ class Formateur
         return $this;
     }
 
-    public function getTel(): ?string
+    public function getNumeroTel(): ?string
     {
-        return $this->tel;
+        return $this->numero_tel;
     }
 
-    public function setTel(string $tel): self
+    public function setNumeroTel(string $numero_tel): self
     {
-        $this->tel = $tel;
+        $this->numero_tel = $numero_tel;
 
         return $this;
     }
@@ -81,15 +88,35 @@ class Formateur
         return $this;
     }
 
-    public function getPromotion(): ?string
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
     {
-        return $this->promotion;
+        return $this->sessions;
     }
 
-    public function setPromotion(string $promotion): self
+    public function addSession(Session $session): self
     {
-        $this->promotion = $promotion;
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->addFormateur($this);
+        }
 
         return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->removeElement($session)) {
+            $session->removeFormateur($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom()." ".$this->getPrenom();
     }
 }

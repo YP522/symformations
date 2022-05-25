@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SessionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
@@ -13,97 +15,112 @@ class Session
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'date')]
     private $date_debut;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'date')]
     private $date_fin;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nom_session;
+    private $nom;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\ManyToMany(targetEntity: Salle::class, inversedBy: 'sessions')]
+    private $salle;
+
+    #[ORM\ManyToMany(targetEntity: Formateur::class, inversedBy: 'sessions')]
     private $formateur;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $promotion;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $salle;
+    public function __construct()
+    {
+        $this->salle = new ArrayCollection();
+        $this->formateur = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateDebut(): ?string
+    public function getDateDebut(): ?\DateTimeInterface
     {
         return $this->date_debut;
     }
 
-    public function setDateDebut(string $date_debut): self
+    public function setDateDebut(\DateTimeInterface $date_debut): self
     {
         $this->date_debut = $date_debut;
 
         return $this;
     }
 
-    public function getDateFin(): ?string
+    public function getDateFin(): ?\DateTimeInterface
     {
         return $this->date_fin;
     }
 
-    public function setDateFin(string $date_fin): self
+    public function setDateFin(\DateTimeInterface $date_fin): self
     {
         $this->date_fin = $date_fin;
 
         return $this;
     }
 
-    public function getNomSession(): ?string
+    public function getNom(): ?string
     {
-        return $this->nom_session;
+        return $this->nom;
     }
 
-    public function setNomSession(string $nom_session): self
+    public function setNom(string $nom): self
     {
-        $this->nom_session = $nom_session;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getFormateur(): ?string
-    {
-        return $this->formateur;
-    }
-
-    public function setFormateur(string $formateur): self
-    {
-        $this->formateur = $formateur;
-
-        return $this;
-    }
-
-    public function getPromotion(): ?string
-    {
-        return $this->promotion;
-    }
-
-    public function setPromotion(string $promotion): self
-    {
-        $this->promotion = $promotion;
-
-        return $this;
-    }
-
-    public function getSalle(): ?string
+    /**
+     * @return Collection<int, Salle>
+     */
+    public function getSalle(): Collection
     {
         return $this->salle;
     }
 
-    public function setSalle(string $salle): self
+    public function addSalle(Salle $salle): self
     {
-        $this->salle = $salle;
+        if (!$this->salle->contains($salle)) {
+            $this->salle[] = $salle;
+        }
+
+        return $this;
+    }
+
+    public function removeSalle(Salle $salle): self
+    {
+        $this->salle->removeElement($salle);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Formateur>
+     */
+    public function getFormateur(): Collection
+    {
+        return $this->formateur;
+    }
+
+    public function addFormateur(Formateur $formateur): self
+    {
+        if (!$this->formateur->contains($formateur)) {
+            $this->formateur[] = $formateur;
+        }
+
+        return $this;
+    }
+
+    public function removeFormateur(Formateur $formateur): self
+    {
+        $this->formateur->removeElement($formateur);
 
         return $this;
     }

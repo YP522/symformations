@@ -14,9 +14,8 @@ class CandidatType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('email')
-            ->add('tel')
-            ->add('promotion')
+            ->add('email_contact')
+            ->add('numero_tel')
         ;
     }
 

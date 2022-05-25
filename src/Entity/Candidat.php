@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CandidatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CandidatRepository::class)]
@@ -13,20 +15,25 @@ class Candidat
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $prenom;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $email;
+    private $email_contact;
 
-    #[ORM\Column(type: 'string', length: 10)]
-    private $tel;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $numero_tel;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\OneToMany(mappedBy: 'candidat', targetEntity: Promotion::class)]
     private $promotion;
+
+    public function __construct()
+    {
+        $this->promotion = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -57,38 +64,56 @@ class Candidat
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmailContact(): ?string
     {
-        return $this->email;
+        return $this->email_contact;
     }
 
-    public function setEmail(string $email): self
+    public function setEmailContact(string $email_contact): self
     {
-        $this->email = $email;
+        $this->email_contact = $email_contact;
 
         return $this;
     }
 
-    public function getTel(): ?string
+    public function getNumeroTel(): ?string
     {
-        return $this->tel;
+        return $this->numero_tel;
     }
 
-    public function setTel(string $tel): self
+    public function setNumeroTel(string $numero_tel): self
     {
-        $this->tel = $tel;
+        $this->numero_tel = $numero_tel;
 
         return $this;
     }
 
-    public function getPromotion(): ?string
+    /**
+     * @return Collection<int, Promotion>
+     */
+    public function getPromotion(): Collection
     {
         return $this->promotion;
     }
 
-    public function setPromotion(string $promotion): self
+    public function addPromotion(Promotion $promotion): self
     {
-        $this->promotion = $promotion;
+        if (!$this->promotion->contains($promotion)) {
+            $this->promotion[] = $promotion;
+            $promotion->setCandidat($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromotion(Promotion $promotion): self
+    {
+        if ($this->promotion->removeElement($promotion)) {
+            // set the owning side to null (unless already changed)
+            if ($promotion->getCandidat() === $this) {
+                $promotion->setCandidat(null);
+            }
+        }
 
         return $this;
     }

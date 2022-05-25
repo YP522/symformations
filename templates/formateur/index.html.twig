@@ -11,9 +11,8 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Tel</th>
+                <th>Numero_tel</th>
                 <th>Email</th>
-                <th>Promotion</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,21 +22,20 @@
                 <td>{{ formateur.id }}</td>
                 <td>{{ formateur.nom }}</td>
                 <td>{{ formateur.prenom }}</td>
-                <td>{{ formateur.tel }}</td>
+                <td>{{ formateur.numeroTel }}</td>
                 <td>{{ formateur.email }}</td>
-                <td>{{ formateur.promotion }}</td>
                 <td>
-                    <a href="{{ path('app_formateur_show', {'id': formateur.id}) }}">afficher</a>
-                    <a href="{{ path('app_formateur_edit', {'id': formateur.id}) }}">modifier</a>
+                    <a href="{{ path('app_formateur_show', {'id': formateur.id}) }}">show</a>
+                    <a href="{{ path('app_formateur_edit', {'id': formateur.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">aucun enregistrement trouvé</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_formateur_new') }}">Ajouter</a>
+    <a href="{{ path('app_formateur_new') }}">Create new</a>
 {% endblock %}

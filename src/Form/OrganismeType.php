@@ -14,8 +14,8 @@ class OrganismeType extends AbstractType
         $builder
             ->add('nom')
             ->add('adresse')
-            ->add('tel')
-            ->add('email')
+            ->add('numero_tel')
+            ->add('email_contact')
         ;
     }
 

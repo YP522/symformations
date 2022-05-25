@@ -14,9 +14,7 @@ class SessionType extends AbstractType
         $builder
             ->add('date_debut')
             ->add('date_fin')
-            ->add('nom_session')
-            ->add('formateur')
-            ->add('promotion')
+            ->add('nom')
             ->add('salle')
         ;
     }

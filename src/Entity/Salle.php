@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SalleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SalleRepository::class)]
@@ -16,8 +18,13 @@ class Salle
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $session;
+    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'salle')]
+    private $sessions;
+
+    public function __construct()
+    {
+        $this->sessions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,15 +43,35 @@ class Salle
         return $this;
     }
 
-    public function getSession(): ?string
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
     {
-        return $this->session;
+        return $this->sessions;
     }
 
-    public function setSession(string $session): self
+    public function addSession(Session $session): self
     {
-        $this->session = $session;
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->addSalle($this);
+        }
 
         return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->removeElement($session)) {
+            $session->removeSalle($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom();
     }
 }

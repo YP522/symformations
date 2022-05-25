@@ -10,7 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Session</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,19 +18,18 @@
             <tr>
                 <td>{{ salle.id }}</td>
                 <td>{{ salle.nom }}</td>
-                <td>{{ salle.session }}</td>
                 <td>
-                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}">afficher</a>
-                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">modifier</a>
+                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}">show</a>
+                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">aucun enregistrement trouvé</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_salle_new') }}">Ajouter</a>
+    <a href="{{ path('app_salle_new') }}">Create new</a>
 {% endblock %}

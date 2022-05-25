@@ -11,9 +11,8 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>Email</th>
-                <th>Tel</th>
-                <th>Promotion</th>
+                <th>Email_contact</th>
+                <th>Numero_tel</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,21 +22,20 @@
                 <td>{{ candidat.id }}</td>
                 <td>{{ candidat.nom }}</td>
                 <td>{{ candidat.prenom }}</td>
-                <td>{{ candidat.email }}</td>
-                <td>{{ candidat.tel }}</td>
-                <td>{{ candidat.promotion }}</td>
+                <td>{{ candidat.emailContact }}</td>
+                <td>{{ candidat.numeroTel }}</td>
                 <td>
-                    <a href="{{ path('app_candidat_show', {'id': candidat.id}) }}">afficher</a>
-                    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">modifier</a>
+                    <a href="{{ path('app_candidat_show', {'id': candidat.id}) }}">show</a>
+                    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">aucun enregistrement trouvé</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_candidat_new') }}">Ajouter</a>
+    <a href="{{ path('app_candidat_new') }}">Create new</a>
 {% endblock %}

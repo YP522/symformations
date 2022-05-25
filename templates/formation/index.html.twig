@@ -10,7 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Intitule</th>
-                <th>Organisme</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,19 +18,18 @@
             <tr>
                 <td>{{ formation.id }}</td>
                 <td>{{ formation.intitule }}</td>
-                <td>{{ formation.organisme }}</td>
                 <td>
-                    <a href="{{ path('app_formation_show', {'id': formation.id}) }}">afficher</a>
-                    <a href="{{ path('app_formation_edit', {'id': formation.id}) }}">modifier</a>
+                    <a href="{{ path('app_formation_show', {'id': formation.id}) }}">show</a>
+                    <a href="{{ path('app_formation_edit', {'id': formation.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">aucun enregistrement trouvé</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_formation_new') }}">Ajouter</a>
+    <a href="{{ path('app_formation_new') }}">Create new</a>
 {% endblock %}

@@ -11,8 +11,8 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Adresse</th>
-                <th>Tel</th>
-                <th>Email</th>
+                <th>Numero_tel</th>
+                <th>Email_contact</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,20 +22,20 @@
                 <td>{{ organisme.id }}</td>
                 <td>{{ organisme.nom }}</td>
                 <td>{{ organisme.adresse }}</td>
-                <td>{{ organisme.tel }}</td>
-                <td>{{ organisme.email }}</td>
+                <td>{{ organisme.numeroTel }}</td>
+                <td>{{ organisme.emailContact }}</td>
                 <td>
-                    <a href="{{ path('app_organisme_show', {'id': organisme.id}) }}">afficher</a>
-                    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">modifier</a>
+                    <a href="{{ path('app_organisme_show', {'id': organisme.id}) }}">show</a>
+                    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">aucun enregistrement trouvé</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_organisme_new') }}">Ajouter</a>
+    <a href="{{ path('app_organisme_new') }}">Create new</a>
 {% endblock %}
