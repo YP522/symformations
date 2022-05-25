@@ -23,17 +23,17 @@
                 <td>{{ promotion.formation }}</td>
                 <td>{{ promotion.referent }}</td>
                 <td>
-                    <a href="{{ path('app_promotion_show', {'id': promotion.id}) }}">show</a>
-                    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">edit</a>
+                    <a href="{{ path('app_promotion_show', {'id': promotion.id}) }}">afficher</a>
+                    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_promotion_new') }}">Create new</a>
+    <a href="{{ path('app_promotion_new') }}">Ajouter</a>
 {% endblock %}

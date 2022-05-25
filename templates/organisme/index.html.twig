@@ -25,17 +25,17 @@
                 <td>{{ organisme.tel }}</td>
                 <td>{{ organisme.email }}</td>
                 <td>
-                    <a href="{{ path('app_organisme_show', {'id': organisme.id}) }}">show</a>
-                    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">edit</a>
+                    <a href="{{ path('app_organisme_show', {'id': organisme.id}) }}">afficher</a>
+                    <a href="{{ path('app_organisme_edit', {'id': organisme.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_organisme_new') }}">Create new</a>
+    <a href="{{ path('app_organisme_new') }}">Ajouter</a>
 {% endblock %}

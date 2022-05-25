@@ -29,17 +29,17 @@
                 <td>{{ session.promotion }}</td>
                 <td>{{ session.salle }}</td>
                 <td>
-                    <a href="{{ path('app_session_show', {'id': session.id}) }}">show</a>
-                    <a href="{{ path('app_session_edit', {'id': session.id}) }}">edit</a>
+                    <a href="{{ path('app_session_show', {'id': session.id}) }}">afficher</a>
+                    <a href="{{ path('app_session_edit', {'id': session.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_session_new') }}">Create new</a>
+    <a href="{{ path('app_session_new') }}">Ajouter</a>
 {% endblock %}
