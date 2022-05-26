@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_candidat_index') }}">back to list</a>
+    <a href="{{ path('app_candidat_index') }}" class="button button-outline">retour à la liste</a>
 
-    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">edit</a>
+    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}" class="button"><i class="fa-solid fa-pen-to-square"></i>modifier</a>
 
     {{ include('candidat/_delete_form.html.twig') }}
 {% endblock %}

@@ -16,6 +16,7 @@ class CandidatType extends AbstractType
             ->add('prenom')
             ->add('email_contact')
             ->add('numero_tel')
+            ->add('promotion')
         ;
     }
 

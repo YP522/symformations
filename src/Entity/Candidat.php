@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CandidatRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CandidatRepository::class)]
@@ -27,13 +25,8 @@ class Candidat
     #[ORM\Column(type: 'string', length: 255)]
     private $numero_tel;
 
-    #[ORM\OneToMany(mappedBy: 'candidat', targetEntity: Promotion::class)]
+    #[ORM\ManyToOne(targetEntity: Promotion::class, inversedBy: 'candidats')]
     private $promotion;
-
-    public function __construct()
-    {
-        $this->promotion = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -88,33 +81,20 @@ class Candidat
         return $this;
     }
 
-    /**
-     * @return Collection<int, Promotion>
-     */
-    public function getPromotion(): Collection
+    public function getPromotion(): ?Promotion
     {
         return $this->promotion;
     }
 
-    public function addPromotion(Promotion $promotion): self
+    public function setPromotion(?Promotion $promotion): self
     {
-        if (!$this->promotion->contains($promotion)) {
-            $this->promotion[] = $promotion;
-            $promotion->setCandidat($this);
-        }
+        $this->promotion = $promotion;
 
         return $this;
     }
 
-    public function removePromotion(Promotion $promotion): self
+    public function __toString()
     {
-        if ($this->promotion->removeElement($promotion)) {
-            // set the owning side to null (unless already changed)
-            if ($promotion->getCandidat() === $this) {
-                $promotion->setCandidat(null);
-            }
-        }
-
-        return $this;
+        return $this->getNom()." ".$this->getPrenom();
     }
 }

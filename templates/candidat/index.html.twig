@@ -3,7 +3,7 @@
 {% block title %}Candidat index{% endblock %}
 
 {% block body %}
-    <h1>Candidat index</h1>
+    <h1>Candidat </h1>
 
     <table class="table">
         <thead>
@@ -25,8 +25,8 @@
                 <td>{{ candidat.emailContact }}</td>
                 <td>{{ candidat.numeroTel }}</td>
                 <td>
-                    <a href="{{ path('app_candidat_show', {'id': candidat.id}) }}">show</a>
-                    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}">edit</a>
+                    <a href="{{ path('app_candidat_show', {'id': candidat.id}) }}" class="button button-outline"><i class="fa-solid fa-eye"></i>voir</a>
+                    <a href="{{ path('app_candidat_edit', {'id': candidat.id}) }}" class="button"><i class="fa-solid fa-pen-to-square"></i>modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_candidat_new') }}">Create new</a>
+    <a href="{{ path('app_candidat_new') }}">Ajouter</a>
 {% endblock %}

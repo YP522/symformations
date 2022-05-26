@@ -3,7 +3,7 @@
 {% block title %}Salle index{% endblock %}
 
 {% block body %}
-    <h1>Salle index</h1>
+    <h1>Salle </h1>
 
     <table class="table">
         <thead>
@@ -19,8 +19,8 @@
                 <td>{{ salle.id }}</td>
                 <td>{{ salle.nom }}</td>
                 <td>
-                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}">show</a>
-                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">edit</a>
+                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}" class="button button-outline"><i class="fa-solid fa-eye"></i>voir</a>
+                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}" class="button"><i class="fa-solid fa-pen-to-square"></i>modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_salle_new') }}">Create new</a>
+    <a href="{{ path('app_salle_new') }}">Ajouter</a>
 {% endblock %}

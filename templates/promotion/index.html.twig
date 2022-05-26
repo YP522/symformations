@@ -3,7 +3,7 @@
 {% block title %}Promotion index{% endblock %}
 
 {% block body %}
-    <h1>Promotion index</h1>
+    <h1>Promotion </h1>
 
     <table class="table">
         <thead>
@@ -19,8 +19,8 @@
                 <td>{{ promotion.id }}</td>
                 <td>{{ promotion.nom }}</td>
                 <td>
-                    <a href="{{ path('app_promotion_show', {'id': promotion.id}) }}">show</a>
-                    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}">edit</a>
+                    <a href="{{ path('app_promotion_show', {'id': promotion.id}) }}" class="button button-outline"><i class="fa-solid fa-eye"></i>voir</a>
+                    <a href="{{ path('app_promotion_edit', {'id': promotion.id}) }}" class="button"><i class="fa-solid fa-pen-to-square"></i>modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_promotion_new') }}">Create new</a>
+    <a href="{{ path('app_promotion_new') }}">Ajouter</a>
 {% endblock %}

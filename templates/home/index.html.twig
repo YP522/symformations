@@ -3,9 +3,25 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170" alt="Symformations 2iTech" width="500vw">
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Dashboard</h1>
+
+    <style>
+
+    </style>
+
+<div class="boxcontainer">
+
+  <div class="row">
+    <div class="column"><span class="spanBox">Organismes : {{nb_organismes}}</span></div>
+    <div class="column"><span class="spanBox">Formateurs : {{nb_formateurs}}</span></div>
+    <div class="column"><span class="spanBox">Promotions : {{nb_promotions}}</span></div>
+    <div class="column"><span class="spanBox">Sessions : {{nb_sessions}}</span></div>
+    <div class="column"><span class="spanBox">Candidats : {{nb_promotions}}</span></div>
+    <div class="column"><span class="spanBox">Salles : {{nb_salles}}</span></div>        
+  </div>
+</div>
 
 </div>
 {% endblock %}

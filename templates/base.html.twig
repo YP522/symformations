@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -191,6 +191,25 @@
             nav a {
                 opacity: 1;
             }
+            }
+            .button-black{
+                background:#000
+            }
+            .button{background:#95cdbb; border: #95cdbb}
+            .button:hover{background: #cc3399; border: #cc3399}
+            .fa-solid{margin-right:0.6vw}
+
+            .boxcontainer {
+                max-width: 1440px;
+            }
+
+            .spanBox {
+                background: #ccc;
+                border-radius: 2px;
+                display: block;
+                padding:20px;
+                margin-bottom: 20px;
+                text-align: center;
             }
         </style>
 

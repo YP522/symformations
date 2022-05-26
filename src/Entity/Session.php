@@ -24,6 +24,10 @@ class Session
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
+    #[ORM\ManyToOne(targetEntity: Promotion::class, inversedBy: 'sessions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $promotion;
+
     #[ORM\ManyToMany(targetEntity: Salle::class, inversedBy: 'sessions')]
     private $salle;
 
@@ -77,6 +81,18 @@ class Session
         return $this;
     }
 
+    public function getPromotion(): ?Promotion
+    {
+        return $this->promotion;
+    }
+
+    public function setPromotion(?Promotion $promotion): self
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Salle>
      */
@@ -123,5 +139,10 @@ class Session
         $this->formateur->removeElement($formateur);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom();
     }
 }
