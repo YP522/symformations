@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Candidat;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,7 @@ class CandidatType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email_contact')
-            ->add('numero_tel')
+            ->add('numero_tel', TextType::class, array('attr' => ['maxlength' => 10]))
             ->add('promotion')
         ;
     }
