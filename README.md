@@ -10,7 +10,7 @@ Web app construit avec le framework Symfony 6 utilisant le langage PHP
     git clone https://github.com/YP522/symformations.git
 2ème étape : 
 
-    docker-compose -f docker-compose.yml up -d
+    docker-compose up -d
 3ème étape :
 
     npm i
